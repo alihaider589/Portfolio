@@ -1,24 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useLayoutEffect, useState } from "react";
+import "./styles/index.scss";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import {
+  Header,
+  Container,
+  Chat,
+  Portfolio,
+  Footer,
+  Loader,
+} from "./components";
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+  useLayoutEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2500);
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        {!isLoading && (
+          <React.Fragment>
+            {" "}
+            <Header />
+            <Container>
+              <Switch>
+                <Route path="/portfolio" component={Portfolio} />
+                <Route path="/chat/:slug/:status" component={Chat} />
+                <Route path="/chat/:slug/" component={Chat} />
+                <Chat />
+              </Switch>
+            </Container>
+            <Footer />
+          </React.Fragment>
+        )}
+      </div>
+      <Loader isLoading={isLoading} />
+    </BrowserRouter>
   );
 }
 
