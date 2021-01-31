@@ -16,7 +16,7 @@ const data = [
 		messages: [
 			"My name is Ali Haider and I'm from Karachi, Pakistan and I'm 23 years old.",
 			"I've been working as a mobile and web developer from past 2 years",
-			'I am currently working with a company named as 360 Tech Solutions',
+			'I am currently working with a company named as Avolox',
 		],
 		answers: [
 			{ label: 'What technologies are you using?', link: '/chat/tech' },
